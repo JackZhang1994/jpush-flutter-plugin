@@ -104,7 +104,10 @@ public class JPushPlugin implements MethodCallHandler {
             getRegistrationID(call, result);
         } else if (call.method.equals("sendLocalNotification")) {
             sendLocalNotification(call, result);
-        } else if (call.method.equals("setBadge")) {
+        } else if (call.method.equals("clearLocalNotifications")) {
+            clearLocalNotifications(call, result);
+        }
+        else if (call.method.equals("setBadge")) {
             setBadge(call, result);
         }
         else {
@@ -284,6 +287,12 @@ public class JPushPlugin implements MethodCallHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void clearLocalNotifications(MethodCall call, Result result) {
+        Log.d(TAG,"clearLocalNotifications: " + call.arguments);
+
+        JPushInterface.clearLocalNotifications(registrar.context());
     }
 
     public void setBadge(MethodCall call, Result result) {

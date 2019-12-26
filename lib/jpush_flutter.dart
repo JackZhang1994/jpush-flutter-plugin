@@ -277,6 +277,15 @@ class JPush {
     return notification.toMap().toString();
   }
 
+  ///
+  /// android Only
+  /// 清除本地通知
+  ///
+  Future clearLocalNotifications() async {
+    print(flutter_log + "clearLocalNotifications:");
+
+    await _channel.invokeMethod('clearLocalNotifications');
+  }
 
 
 }
